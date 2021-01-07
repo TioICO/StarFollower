@@ -1,6 +1,7 @@
 ## About
 A simple tool that dumps the projects starred by the people you are following on GitHub!
-It-just-works script(s) that coded by who knows nothing about OOP, clean coding, Python, etc.
+
+The author knows nothing about OOP, clean coding, Python, etc. It just works.
 
 ### Built With
 * [SQLAlchemy](https://www.sqlalchemy.org/)
