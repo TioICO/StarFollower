@@ -10,7 +10,7 @@ examples:
 ### Dump projects starred by <username>'s following user and save them in the database
 > python3 star_follower.py --dump <your_username> --self --pages 10
 
-### Query records from the database and export as a table in HTML 
+### Query records from the database and export as a table in HTML with the length limit set to 30 on repo names and 250 on repo descriptions
 > python3 star_follower.py --export stars.html -f html --nlen 30 --dlen 250
 '''
 

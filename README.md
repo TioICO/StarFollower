@@ -40,11 +40,15 @@ optional arguments:
   --orderby {starred_by,repo_id,stars,pushed_at,repo_name,repo_url,description,language}
                         Set the column name used by sorting (default: stars)
   -v, --verbose         Display verbose info
+```
 
-examples:
-### Dump projects starred by <username>'s following user and save them in the database
-> python3 star_follower.py --dump <your_username> --self --pages 10
+### Examples
+* Dump projects starred by \<your_username\>'s following users and save them into the database
+```bash
+python3 star_follower.py --dump <your_username> --self --pages 10
+```
 
-### Query records from the database and export as a table in HTML
-> python3 star_follower.py --export stars.html -f html --nlen 30 --dlen 250
+* Query records from the database and export as a table in HTML with the length limit set to 30 on repo names and 250 on repo descriptions
+```bash
+python3 star_follower.py --export stars.html -f html --nlen 30 --dlen 250
 ```
