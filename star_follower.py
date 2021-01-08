@@ -40,8 +40,10 @@ def main():
     star_follower = StarFollower(db_path=args.db)
     if args.dump:
         star_follower.dump(args.dump, page_limit=args.pages, include_root=args.self)
+        logger.info('[+] Finished dumping!')
     elif args.export:
         star_follower.export(args.export, name_limit=args.nlen, descr_limit=args.dlen, file_format=args.format, order_by=args.orderby)
+        logger.info('[+] Finished exporting!')
 
 if __name__ == '__main__':
     try:

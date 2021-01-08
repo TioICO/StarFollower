@@ -128,7 +128,6 @@ class StarFollower(object):
 
     def dump(self, username : str, include_root : bool, page_limit : int=0):
         _followings = self.__fetch_followings_all(username)
-        logger.error(_followings)
         if include_root:
             _followings = [username] + _followings
         logger.debug(_followings)
