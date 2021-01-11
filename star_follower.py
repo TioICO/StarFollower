@@ -10,8 +10,8 @@ examples:
 ### Dump projects starred by <username>'s following user and save them in the database
 > python3 star_follower.py --dump <your_username> --self --pages 10
 
-### Query records from the database and export as a table in HTML with the length limit set to 30 on repo names and 250 on repo descriptions
-> python3 star_follower.py --export stars.html -f html --nlen 30 --dlen 250
+### Query records from the database and export as a table in HTML, with the length limit set to 30 on repo names, 50 on repo urls and 250 on repo descriptions
+> python3 star_follower.py --export stars.html -f html --nlen 30 --ulen 50 --dlen 250
 '''
 
     parser = argparse.ArgumentParser()
@@ -20,6 +20,7 @@ examples:
     parser.add_argument('--self', action='store_true', help='Include root account (--username) when dumping stars')
     parser.add_argument('--pages', metavar='<max number of pages>', type=int, default=0, help='Set the max limit of pages to dump (100 projects per page)')
     parser.add_argument('--nlen', metavar='<max length of repo name>', type=int, default=0, help='Truncate repo names longer than length limit')
+    parser.add_argument('--ulen', metavar='<max length of repo url>', type=int, default=0, help='Truncate repo urls longer than length limit')
     parser.add_argument('--dlen', metavar='<max length of repo description>', type=int, default=0, help='Truncate repo descriptions longer than length limit')
     parser.add_argument('--export', metavar='</path/to/file>', type=str, help='Export the database to specified file')
     parser.add_argument('-f', dest='format', default='excel', choices=['excel', 'json', 'html', 'markdown'], type=str, help='Set the exporting format (default: excel)')
@@ -42,7 +43,7 @@ def main():
         star_follower.dump(args.dump, page_limit=args.pages, include_root=args.self)
         logger.info('[+] Finished dumping!')
     elif args.export:
-        star_follower.export(args.export, name_limit=args.nlen, descr_limit=args.dlen, file_format=args.format, order_by=args.orderby)
+        star_follower.export(args.export, name_limit=args.nlen, url_limit=args.ulen, descr_limit=args.dlen, file_format=args.format, order_by=args.orderby)
         logger.info('[+] Finished exporting!')
 
 if __name__ == '__main__':

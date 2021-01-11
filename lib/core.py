@@ -102,15 +102,18 @@ class StarFollower(object):
     def __truncate_columns(self, column_name, length_limit):
         _mask = self._df[column_name].str.len() > length_limit
         self._df.loc[_mask, column_name] = self._df[_mask].apply(
-            lambda _row: _row[column_name][0:length_limit] + ' ...',
+            lambda _row: _row[column_name][:length_limit] + ' ...',
             axis=1
         )
 
-    def export(self, output_file : str, name_limit : int, descr_limit : int, file_format : int, order_by : str):
+    def export(self, output_file : str, name_limit : int, url_limit : int, descr_limit : int, file_format : int, order_by : str):
         _stars = self.session.query( Star ).order_by( getattr(Star, order_by).desc() )
         self._df = pd.read_sql(_stars.statement, self.session.bind)
+        
         if name_limit > 0:
             self.__truncate_columns('repo_name', name_limit)
+        if url_limit > 0:
+            self.__truncate_columns('repo_url', url_limit)
         if descr_limit > 0:
             self.__truncate_columns('description', descr_limit)
 

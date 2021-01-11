@@ -17,9 +17,10 @@ python3 star_follower.py -h
 
 ## Usage
 ```
-python3 star_follower.py [-h] [--db <URI>] [--dump <username>] [--self] [--pages <max number of pages>]
-                        [--nlen <max length of repo name>] [--dlen <max length of repo description>]
-                        [--export </path/to/file>] [-f {excel,json,html,markdown}]
+usage: star_follower.py [-h] [--db <URI>] [--dump <username>] [--self] [--pages <max number of pages>]
+                        [--nlen <max length of repo name>] [--ulen <max length of repo url>]
+                        [--dlen <max length of repo description>] [--export </path/to/file>]
+                        [-f {excel,json,html,markdown}]
                         [--orderby {starred_by,repo_id,stars,pushed_at,repo_name,repo_url,description,language}] [-v]
 
 optional arguments:
@@ -31,6 +32,8 @@ optional arguments:
                         Set the max limit of pages to dump (100 projects per page)
   --nlen <max length of repo name>
                         Truncate repo names longer than length limit
+  --ulen <max length of repo url>
+                        Truncate repo urls longer than length limit
   --dlen <max length of repo description>
                         Truncate repo descriptions longer than length limit
   --export </path/to/file>
@@ -48,7 +51,7 @@ optional arguments:
 python3 star_follower.py --dump <your_username> --self --pages 10
 ```
 
-* Query records from the database and export as a table in HTML with the length limit set to 30 on repo names and 250 on repo descriptions
+* Query records from the database and export as a table in HTML, with the length limit set to 30 on repo names, 50 on repo urls and 250 on repo descriptions
 ```bash
-python3 star_follower.py --export stars.html -f html --nlen 30 --dlen 250
+python3 star_follower.py --export stars.html -f html --nlen 30 --ulen 50 --dlen 250
 ```
